@@ -10,66 +10,18 @@ namespace Text_Parser
     {
         static void Main(string[] args)
         {
-            string[] array =
-	        {
-	            "Do you like this site?",
-	            "--cool--",
-	            "...ok!",
-	            "None",
-	            ""
-	        };
-            // Call method on each string.
-            foreach (string value in array)
-            {
-                Console.WriteLine(Program.TrimPunctuation(value));
-                Console.ReadLine();
-            }
-        }
+            TextAnalyzer Reader = new TextAnalyzer();
 
-        static string TrimPunctuation(string value)
-        {
-            // Count start punctuation.
-            int removeFromStart = 0;
-            for (int i = 0; i < value.Length; i++)
-            {
-                if (char.IsPunctuation(value[i]))
-                {
-                    removeFromStart++;
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var sampleText = "Hold your ground, hold your ground! Sons of Gondor, of Rohan, my brothers! I see in your eyes the same fear that would take the heart of me. A day may come when the courage of men fails, when we forsake our friends and break all bonds of fellowship, but it is not this day. An hour of wolves and shattered shields, when the age of men comes crashing down! But it is not this day! This day we fight! By all that you hold dear on this good Earth, I bid you stand, Men of the West!";
 
-            // Count end punctuation.
-            int removeFromEnd = 0;
-            for (int i = value.Length - 1; i >= 0; i--)
-            {
-                if (char.IsPunctuation(value[i]))
-                {
-                    removeFromEnd++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            // No characters were punctuation.
-            if (removeFromStart == 0 &&
-                removeFromEnd == 0)
-            {
-                return value;
-            }
-            // All characters were punctuation.
-            if (removeFromStart == value.Length &&
-                removeFromEnd == value.Length)
-            {
-                return "";
-            }
-            // Substring.
-            return value.Substring(removeFromStart,
-                value.Length - removeFromEnd - removeFromStart);
+            Console.WriteLine("There are " + Reader.ToSentenceArray(sampleText).Length + " sentences.");
+            Console.WriteLine("There are " + Reader.ToWordArray(sampleText).Length + " total words.");
+            Console.WriteLine("The longest sentence is: " + Reader.LongestSentence(Reader.ToSentenceArray(sampleText)));
+            Console.WriteLine("The most frequently used word is: \"" + Reader.MostFrequentWord(Reader.ToWordArray(sampleText)) + "\"");
+            Console.WriteLine("The third longest word(s): " + Reader.ThirdLongestWord(Reader.ToWordArray(sampleText)) + "   Number of characters: " + Reader.ThirdLongestWordCharCount(Reader.ToWordArray(sampleText)));
+            Console.ReadLine();
+
+
         }
     }
 }
