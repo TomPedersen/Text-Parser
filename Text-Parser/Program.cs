@@ -8,6 +8,12 @@ namespace Text_Parser
 {
     class Program
     {
+
+        // <summary>
+        // FullAnalysis is a method in the TextAnalyzer class. It accepts any string and displays the relevant information in the console.
+        // For this challenge, I have defined 'words' as any character string between white-spaces, and sentences as strings split between these punctuators: . ! ?
+        // </summary>
+
         static void Main(string[] args)
         {
             TextAnalyzer TomsReader = new TextAnalyzer();
