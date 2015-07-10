@@ -1,10 +1,16 @@
 ﻿Write a program that parses a text file and produces the following information.
-•	The number of sentences contained within the text.
-•	The number of words contained within the text.
-•	The sentence with the most words in it.
-•	The most frequently used word(s) in the text.
-•	The 3rd longest word(s) in the text.
+1.	The number of sentences contained within the text.
+2.	The number of words contained within the text.
+3.	The sentence with the most words in it.
+4.	The most frequently used word(s) in the text.
+5.	The 3rd longest word(s) in the text.
+
+* Regex replace to take out punctuation. Keep .!? to specify end of sentences.
+1. Sentence defined as string split by '.' or '!' or '?' --> .Length for number of sentences 
+2. Word defined as string, split by ' ' --> .Length for number of words. Remove sentence terminators first so they don't add to word length
+3. Find largest sentence by regex split function, then lambda to sort by descending, then LINQ to grab and return the first. In this case punctuation shouldn't matter
+4. GroupBy, sorted with LINQ, then sorted by descending. Return first key.
+5. Sort by descending first, then groupby string length with LINQ, skip 2, return first + key for char#
 
 
-Word defined as string from ' ' to ' '
-Sentence defined as string array from '. ' to '. '
+
